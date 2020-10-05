@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3308/ebf
+    username: root
+    password: password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  session:
+    store-type: redis
+
+server:
+  address: 127.0.0.1
+  port: 8090
+  error:
+    include-message: always
+
+security:
+  sessions: NEVER
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9000/auth/user
+
+springdoc:
+  api-docs:
+    path: /api-docs
+

@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+security:
+  user:
+    password: password
+  ignored:
+    - "*.bundle.*"
+  oauth2:
+    client:
+      accessTokenUri: http://localhost:9000/auth/oauth/token
+      userAuthorizationUri: http://localhost:9000/auth/oauth/authorize
+      clientId: acme
+      clientSecret: acmesecret
+    resource:
+      userInfoUri: http://localhost:9000/auth/user
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+
+zuul:
+  routes:
+    home:
+      path: /greeting/**
+      url: http://localhost:8090
+      sensitive-headers:
+    employee:
+      path: /employees/**
+      url: http://localhost:8090/employees
+      sensitive-headers:
+    user:
+      path: /user/**
+      url: http://localhost:9000/auth/user
+      sensitive-headers:

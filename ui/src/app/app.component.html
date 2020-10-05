@@ -1,0 +1,52 @@
+<div class="container">
+  <ul class="nav nav-pills">
+    <li><a>Home</a></li>
+    <li [hidden]="!authenticated"><a href="login">Login</a></li>
+    <li><a (click)="logout()">Logout</a></li>
+  </ul>
+</div>
+<div class="container">
+  <h1>Welcome</h1>
+  <div [hidden]="!authenticated">
+    <table id="t01">
+      <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>EMAIL</th>
+        <th>ADDRESS</th>
+        <th>SALARY</th>
+      </tr>
+      <tr *ngFor="let e of greeting">
+        <td>{{e.id}}</td>
+        <td>{{e.name}}</td>
+        <td>{{e.surname}}</td>
+        <td>{{e.email}}</td>
+        <td>{{e.address}}</td>
+        <td>{{e.salary}}</td>
+      </tr>
+    </table>
+  </div>
+  <div [hidden]="authenticated">
+    <p>Login to see your employees</p>
+  </div>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  #t01 tr:nth-child(even) {
+    background-color: #eee;
+  }
+  #t01 tr:nth-child(odd) {
+   background-color: #fff;
+  }
+  #t01 th {
+    background-color: black;
+    color: white;
+  }
+</style>
